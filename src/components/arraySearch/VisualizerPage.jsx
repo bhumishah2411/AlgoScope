@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Visualizer from './Visualizer'
 import ComparisonMode from './ComparisonMode'
 
 const ArrayVisualizerPage = () => {
-  const [mode, setMode] = useState('solo') // 'solo' | 'compare'
+  const [searchParams, setSearchParams] = useSearchParams()
+  const mode = searchParams.get('mode') === 'compare' ? 'compare' : 'solo'
+
+  const setMode = (newMode) => {
+    const newParams = new URLSearchParams(searchParams)
+    if (newMode === 'compare') {
+      newParams.set('mode', 'compare')
+    } else {
+      newParams.delete('mode')
+    }
+    setSearchParams(newParams)
+  }
 
   return (
     <motion.div

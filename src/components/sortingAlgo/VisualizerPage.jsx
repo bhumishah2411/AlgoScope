@@ -1,10 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Visualizer from './Visualizer'
 import ComparisonMode from './ComparisonMode'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useSearchParams } from 'react-router-dom'
 
 export default function VisualizerPage() {
-  const [activeTab, setActiveTab] = useState('solo')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const activeTab = searchParams.get('mode') === 'compare' ? 'compare' : 'solo'
+
+  const setActiveTab = (tab) => {
+    const newParams = new URLSearchParams(searchParams)
+    if (tab === 'compare') {
+      newParams.set('mode', 'compare')
+    } else {
+      newParams.delete('mode')
+    }
+    setSearchParams(newParams)
+  }
 
   return (
     <motion.div

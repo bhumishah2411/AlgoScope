@@ -1,24 +1,35 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { CanvasShortestPath } from './CanvasShortestPath'
 import CodePanel from '../visualizer/CodePanel'
 import { MenuSelectNodesShortestPath } from './MenuSelectNodesShortestPath'
 import { MenuSetAlgoShortestPath } from './MenuSetAlgoShortestPath'
 import { motion } from 'framer-motion'
+import { useSearchParams } from 'react-router-dom'
 import SpeedSlider from '../SpeedSlider'
 import { shortestPathSources } from '../../algorithms/searching/shortestPathSources'
 import ComplexityCard from '../ComplexityCard'
 import ComparisonMode from './ComparisonMode'
 
 export const ShortestPathPage = () => {
-  const [algorithm, setAlgorithm] = useState(null)
-  const [source, setSource] = useState(null)
-  const [target, setTarget] = useState(null)
-  const [speed, setSpeed] = useState(1.0)
-  const [language, setLanguage] = useState('javascript')
-  const [runKey, setRunKey] = useState(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const mode = searchParams.get('mode') === 'compare' ? 'compare' : 'solo'
 
-  // ✅ NEW: mode toggle
-  const [mode, setMode] = useState('solo') // 'solo' | 'compare'
+  const setMode = (newMode) => {
+    const newParams = new URLSearchParams(searchParams)
+    if (newMode === 'compare') {
+      newParams.set('mode', 'compare')
+    } else {
+      newParams.delete('mode')
+    }
+    setSearchParams(newParams)
+  }
+
+  const [algorithm, setAlgorithm] = React.useState(null)
+  const [source, setSource] = React.useState(null)
+  const [target, setTarget] = React.useState(null)
+  const [speed, setSpeed] = React.useState(1.0)
+  const [language, setLanguage] = React.useState('javascript')
+  const [runKey, setRunKey] = React.useState(null)
 
   const handleSpeedChange = (event, newValue) => {
     setSpeed(newValue)

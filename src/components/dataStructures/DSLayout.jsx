@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import StackIV from './stackIV'
@@ -22,17 +22,31 @@ const tabs = [
 export const DSLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const activeTab = searchParams.get('type') || 'stack'
+  const mode = searchParams.get('mode') === 'compare' ? 'compare' : 'solo'
   const [selectedLang, setSelectedLang] = useState('javascript')
 
   const [stackMode, setStackMode] = useState('standard stack')
   const [treeTraversal, setTreeTraversal] = useState('inorder')
   const [activeLine, setActiveLine] = useState(null)
 
-  // ✅ NEW: mode toggle
-  const [mode, setMode] = useState('solo') // 'solo' | 'compare'
+  const setMode = useCallback(
+    (newMode) => {
+      const newParams = new URLSearchParams(searchParams)
+      if (newMode === 'compare') {
+        newParams.set('mode', 'compare')
+      } else {
+        newParams.delete('mode')
+      }
+      setSearchParams(newParams)
+    },
+    [searchParams, setSearchParams]
+  )
 
   const setActiveTab = (tabId) => {
-    setSearchParams({ type: tabId })
+    const newParams = new URLSearchParams(searchParams)
+    newParams.set('type', tabId)
+    newParams.delete('mode') // reset mode when switching tab
+    setSearchParams(newParams)
   }
 
   useEffect(() => {
@@ -45,7 +59,7 @@ export const DSLayout = () => {
     if (!['stack', 'queue', 'tree'].includes(activeTab) && mode === 'compare') {
       setTimeout(() => setMode('solo'), 0)
     }
-  }, [activeTab, mode])
+  }, [activeTab, mode, setMode])
 
   useEffect(() => {
     const handleGlobalChange = (e) => {
@@ -125,7 +139,6 @@ export const DSLayout = () => {
             key={tab.id}
             onClick={() => {
               setActiveTab(tab.id)
-              setMode('solo') // reset mode when switching tab
             }}
             className={`px-6 py-2 rounded-lg font-mono text-sm transition-all duration-300 relative ${
               activeTab === tab.id

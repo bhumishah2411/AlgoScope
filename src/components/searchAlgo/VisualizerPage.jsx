@@ -153,26 +153,37 @@
 //     </motion.div>
 //   )
 // }
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { CanvasSearching } from './CanvasSearching'
 import CodePanel from '../visualizer/CodePanel'
 import { MenuSelectNodeSearch } from './MenuSelectNodeSearch'
 import { MenuSelectAlgorithm } from './MenuSelectAlgorithm'
 import { motion } from 'framer-motion'
+import { useSearchParams } from 'react-router-dom'
 import SpeedSlider from '../SpeedSlider'
 import { graphSearchSources } from '../../algorithms/searching/graphSearchSources'
 import ComplexityCard from '../ComplexityCard'
 import ComparisonMode from './ComparisonMode'
 
 export const VisualizerPage = () => {
-  const [node, setNode] = useState(null)
-  const [algorithm, setAlgorithm] = useState(null)
-  const [speed, setSpeed] = useState(1.0)
-  const [language, setLanguage] = useState('javascript')
-  const [runKey, setRunKey] = useState(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const mode = searchParams.get('mode') === 'compare' ? 'compare' : 'solo'
 
-  // ✅ NEW: mode toggle
-  const [mode, setMode] = useState('solo') // 'solo' | 'compare'
+  const setMode = (newMode) => {
+    const newParams = new URLSearchParams(searchParams)
+    if (newMode === 'compare') {
+      newParams.set('mode', 'compare')
+    } else {
+      newParams.delete('mode')
+    }
+    setSearchParams(newParams)
+  }
+
+  const [node, setNode] = React.useState(null)
+  const [algorithm, setAlgorithm] = React.useState(null)
+  const [speed, setSpeed] = React.useState(1.0)
+  const [language, setLanguage] = React.useState('javascript')
+  const [runKey, setRunKey] = React.useState(null)
 
   const handleSpeedChange = (event, newValue) => {
     setSpeed(newValue)
