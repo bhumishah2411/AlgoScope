@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0](https://github.com/algoscope-hq/AlgoScope/compare/v1.5.0...v1.6.0) (2026-05-18)
+
+
+### Features
+
+* add algorithm comparison mode with side-by-side visualization for all the types of algorithm ([5495d9d](https://github.com/algoscope-hq/AlgoScope/commit/5495d9d4519523fbe946aab0e8da44f08ba6294b))
+* add best average and worst case complexity analysis ([b92b5d8](https://github.com/algoscope-hq/AlgoScope/commit/b92b5d8e5cf2d3b96a1edc95d92627193c83f0f6))
+* add dynamic SEO metadata for Comparison Mode and missing routes ([d05609c](https://github.com/algoscope-hq/AlgoScope/commit/d05609cd16621ef58b5650610762b0c2ea9ab7e7))
+* **ds:** implement interactive binary heap and priority queue visualizers ([0a2c4c4](https://github.com/algoscope-hq/AlgoScope/commit/0a2c4c43fd52757e066608e24ac535e2392f2318))
+* dynamically display Ctrl/Enter or ⌘/Return based on user OS ([4b24f06](https://github.com/algoscope-hq/AlgoScope/commit/4b24f06a5f08f905f575537b193b4e0a090e25d1))
+* Moore Voting Algorithm ([50db58b](https://github.com/algoscope-hq/AlgoScope/commit/50db58b73194f6af1c433580f4553d2c2507a369))
+* Moore Voting Algorithm ([572d6d5](https://github.com/algoscope-hq/AlgoScope/commit/572d6d50bd0cf22cee643e4ad15630a0bde7b0f7))
+* pr tamplate add ([40ddc36](https://github.com/algoscope-hq/AlgoScope/commit/40ddc3631f8749e2327992b719dec45de9ee65ec))
+* refine Comparison Mode SEO metadata and update sitemap ([fc2dd52](https://github.com/algoscope-hq/AlgoScope/commit/fc2dd525f80a7996ea18fae2de1922fd202a5e72))
+* tooltip hover jsx file added to src/components ([f42986a](https://github.com/algoscope-hq/AlgoScope/commit/f42986a2dc68ae2cbbce37176579eeda6e384127))
+
+
+### Bug Fixes
+
+* added Moore's Voting Algorithm to searchbar ([03220fb](https://github.com/algoscope-hq/AlgoScope/commit/03220fb5df5f6535dde0fd7f0326c61d2b9dd76f))
+* folder fix ([5041ef7](https://github.com/algoscope-hq/AlgoScope/commit/5041ef722022b61ed1a095e951e54ed95de6c34c))
+* format & lint ([904ca5f](https://github.com/algoscope-hq/AlgoScope/commit/904ca5f76b2401e08b2dca7e895efc21f6f2efb2))
+* format & lint ([b170b6d](https://github.com/algoscope-hq/AlgoScope/commit/b170b6dc9649ee08601013c4bd225699407e0de5))
+* format ComplexityGraph component ([fe34072](https://github.com/algoscope-hq/AlgoScope/commit/fe34072fdb549139c68c8104a6bf9a22bdeb0dab))
+* **search:** reset query and results state on modal close ([7b67813](https://github.com/algoscope-hq/AlgoScope/commit/7b67813d58a508b4d8c7b46e74be3d8c9aabceab))
+* show graph only for selected algorithm ([a35a43d](https://github.com/algoscope-hq/AlgoScope/commit/a35a43dc5e8461d280141c120ff9954817d5244e))
+* tooltip hover feature added to all category files ([f93c7ed](https://github.com/algoscope-hq/AlgoScope/commit/f93c7ed67ae1ecbb44150f106725e4a3d3a9a3d3))
+* **ui:** adjust vertical spacing for status display banner ([aa23afe](https://github.com/algoscope-hq/AlgoScope/commit/aa23afe954845876609e6281f56f5580b9d66162))
+
 ## [1.5.0] - 2026-05-17
 
 ### Added
