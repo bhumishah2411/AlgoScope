@@ -5,76 +5,135 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const ALGORITHMS = [
   // Sorting
-  { id: 'bubble', name: 'Bubble Sort', category: 'Sorting', route: '/sort' },
+  {
+    id: 'bubble',
+    name: 'Bubble Sort',
+    category: 'Sorting',
+    route: '/sort?algo=bubble',
+  },
   {
     id: 'selection',
     name: 'Selection Sort',
     category: 'Sorting',
-    route: '/sort',
+    route: '/sort?algo=selection',
   },
   {
     id: 'insertion',
     name: 'Insertion Sort',
     category: 'Sorting',
-    route: '/sort',
+    route: '/sort?algo=insertion',
   },
-  { id: 'quick', name: 'Quick Sort', category: 'Sorting', route: '/sort' },
-  { id: 'merge', name: 'Merge Sort', category: 'Sorting', route: '/sort' },
-  { id: 'heap', name: 'Heap Sort', category: 'Sorting', route: '/sort' },
+  {
+    id: 'quick',
+    name: 'Quick Sort',
+    category: 'Sorting',
+    route: '/sort?algo=quick',
+  },
+  {
+    id: 'merge',
+    name: 'Merge Sort',
+    category: 'Sorting',
+    route: '/sort?algo=merge',
+  },
+  {
+    id: 'heap',
+    name: 'Heap Sort',
+    category: 'Sorting',
+    route: '/sort?algo=heap',
+  },
   {
     id: 'counting',
     name: 'Counting Sort',
     category: 'Sorting',
-    route: '/sort',
+    route: '/sort?algo=counting',
   },
-  { id: 'radix', name: 'Radix Sort', category: 'Sorting', route: '/sort' },
+  {
+    id: 'radix',
+    name: 'Radix Sort',
+    category: 'Sorting',
+    route: '/sort?algo=radix',
+  },
+  {
+    id: 'shell',
+    name: 'Shell Sort',
+    category: 'Sorting',
+    route: '/sort?algo=shell',
+  },
   // Searching (Graph)
   {
     id: 'bfs',
     name: 'BFS (Breadth First Search)',
     category: 'Searching',
-    route: '/search',
+    route: '/search?algo=bfs',
   },
   {
     id: 'dfs',
     name: 'DFS (Depth First Search)',
     category: 'Searching',
-    route: '/search',
+    route: '/search?algo=dfs',
   },
   // Shortest Path
   {
     id: 'dijkstra',
     name: 'Dijkstra',
     category: 'Shortest Path',
-    route: '/spath',
+    route: '/spath?algo=dijkstra',
   },
   {
     id: 'floyd',
     name: 'Floyd-Warshall',
     category: 'Shortest Path',
-    route: '/spath',
+    route: '/spath?algo=floydwarshall',
   },
   // Array Search
   {
     id: 'linear',
     name: 'Linear Search',
     category: 'Array Search',
-    route: '/ldssearch',
+    route: '/ldssearch?algo=linear',
   },
   {
     id: 'binary',
     name: 'Binary Search',
     category: 'Array Search',
-    route: '/ldssearch',
+    route: '/ldssearch?algo=binary',
+  },
+  {
+    id: 'kadane',
+    name: "Kadane's Algorithm",
+    category: 'Dynamic Programming',
+    route: '/kadane',
+    keywords: [
+      'kadane',
+      'maximum subarray',
+      'max subarray',
+      'dynamic programming',
+    ],
+  },
+  {
+    id: 'mooreVoting',
+    name: "Moore's Voting Algorithm",
+    category: 'Array Search',
+    route: '/moore-voting',
   },
   // ADTs
-  { id: 'stack', name: 'Stack', category: 'Data Structures', route: '/adt' },
-  { id: 'queue', name: 'Queue', category: 'Data Structures', route: '/adt' },
+  {
+    id: 'stack',
+    name: 'Stack',
+    category: 'Data Structures',
+    route: '/adt?type=stack',
+  },
+  {
+    id: 'queue',
+    name: 'Queue',
+    category: 'Data Structures',
+    route: '/adt?type=queue',
+  },
   {
     id: 'tree',
     name: 'Binary Tree',
     category: 'Data Structures',
-    route: '/adt',
+    route: '/adt?type=tree',
   },
   // General
   {
@@ -90,6 +149,15 @@ const SearchBar = () => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [isMac] = useState(() => {
+    if (typeof window === 'undefined') return false
+    const platform =
+      navigator.userAgentData?.platform || navigator.platform || ''
+    return (
+      platform.toLowerCase().includes('mac') ||
+      navigator.userAgent.toLowerCase().includes('macintosh')
+    )
+  })
 
   const inputRef = useRef(null)
   const navigate = useNavigate()
@@ -97,7 +165,7 @@ const SearchBar = () => {
   // Initialize Fuse.js
   const fuse = useMemo(() => {
     return new Fuse(ALGORITHMS, {
-      keys: ['name', 'category'],
+      keys: ['name', 'category', 'keywords'],
       threshold: 0.4,
       includeMatches: true,
     })
@@ -127,6 +195,12 @@ const SearchBar = () => {
     [navigate]
   )
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setQuery('')
+    setResults([])
+  }
+
   // Handle Keyboard Shortcuts
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -153,7 +227,7 @@ const SearchBar = () => {
           handleSelect(results[selectedIndex].item.route)
         }
       } else if (e.key === 'Escape') {
-        setIsModalOpen(false)
+        handleCloseModal()
       }
     }
 
@@ -197,7 +271,7 @@ const SearchBar = () => {
           Search...
         </span>
         <div className="ml-auto hidden lg:flex items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
-          <kbd className="text-[10px] font-sans">⌘</kbd>
+          <kbd className="text-[10px] font-sans">{isMac ? '⌘' : 'Ctrl'}</kbd>
           <kbd className="text-[10px] font-sans">K</kbd>
         </div>
       </button>
@@ -211,7 +285,7 @@ const SearchBar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
+              onClick={handleCloseModal}
               className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
             />
 
@@ -248,7 +322,7 @@ const SearchBar = () => {
                 />
                 {/* Close Button */}
                 <button
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={handleCloseModal}
                   className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/10 transition-all duration-200"
                   aria-label="Close search"
                 >
@@ -294,7 +368,7 @@ const SearchBar = () => {
                         <div className="flex items-center gap-2">
                           {index === selectedIndex && (
                             <span className="text-[10px] text-slate-500 border border-slate-700 px-1 rounded bg-slate-800">
-                              Enter
+                              {isMac ? 'Return' : 'Enter'}
                             </span>
                           )}
                           <svg
@@ -340,7 +414,7 @@ const SearchBar = () => {
                   </span>
                   <span className="flex items-center gap-1">
                     <kbd className="px-1.5 py-0.5 border border-slate-700 rounded bg-slate-800">
-                      Enter
+                      {isMac ? 'Return' : 'Enter'}
                     </kbd>{' '}
                     Select
                   </span>
