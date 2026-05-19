@@ -55,6 +55,7 @@ export default function Visualizer() {
     play: playPlayback,
     replay: replayPlayback,
     stepForward,
+    stepBackward,
   } = useStepPlayback({ speed })
 
   const algorithmOptions = {
@@ -496,7 +497,7 @@ export default function Visualizer() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-4 gap-2">
                     <Tooltip
                       content={isPlaying ? 'Pause' : 'Start Visualization'}
                       position="top"
@@ -505,9 +506,19 @@ export default function Visualizer() {
                         type="button"
                         onClick={isPlaying ? pausePlayback : playPlayback}
                         disabled={isComplete && !isPlaying}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-1 py-2 text-xs sm:text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         {isPlaying ? 'Pause' : 'Play'}
+                      </button>
+                    </Tooltip>
+                    <Tooltip content="Go back one step" position="top">
+                      <button
+                        type="button"
+                        onClick={stepBackward}
+                        disabled={isPlaying || currentStepIndex <= 0}
+                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-1 py-2 text-xs sm:text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        Back
                       </button>
                     </Tooltip>
                     <Tooltip content="Advance one step forward" position="top">
@@ -515,7 +526,7 @@ export default function Visualizer() {
                         type="button"
                         onClick={stepForward}
                         disabled={isPlaying || isComplete}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-1 py-2 text-xs sm:text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         Step
                       </button>
@@ -524,7 +535,7 @@ export default function Visualizer() {
                       <button
                         type="button"
                         onClick={replayPlayback}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-800 px-1 py-2 text-xs sm:text-sm font-medium text-slate-100 transition hover:border-cyan-500 hover:text-cyan-200"
                       >
                         Replay
                       </button>
