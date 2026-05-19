@@ -1,4 +1,4 @@
-name: "Conventional Commits"
+name: 'Conventional Commits'
 
 # release-please categorizes changes based on the Conventional Commits prefix in commit messages (e.g., feat:, fix:, docs:, chore:)
 

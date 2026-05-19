@@ -1,6 +1,6 @@
 name: Bug report
 description: Report a bug or regression in AlgoScope
-title: "[Bug]: "
+title: '[Bug]: '
 labels:
   - bug
 body:

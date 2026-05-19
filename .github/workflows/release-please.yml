@@ -47,8 +47,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "docs: rebuild CHANGELOG.md with proper ordering and file trees [skip ci]"
-          title: "docs: update CHANGELOG.md for new release"
-          branch: "bot/update-changelog"
-          body: "Automated `CHANGELOG.md` rebuild triggered by the latest release. Please review and merge to keep the changelog up to date."
+          commit-message: 'docs: rebuild CHANGELOG.md with proper ordering and file trees [skip ci]'
+          title: 'docs: update CHANGELOG.md for new release'
+          branch: 'bot/update-changelog'
+          body: 'Automated `CHANGELOG.md` rebuild triggered by the latest release. Please review and merge to keep the changelog up to date.'
           base: main
