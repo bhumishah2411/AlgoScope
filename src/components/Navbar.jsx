@@ -114,7 +114,7 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/50 backdrop-blur supports-[backdrop-filter]:bg-slate-950/40 rounded-xl shadow-2xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 items-center justify-between relative">
           <Link
             to="/"
             className="flex flex-row text-xl font-semibold tracking-tight group"
@@ -129,7 +129,7 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Search */}
-          <div className="hidden md:flex flex-1 justify-center max-w-xs mx-4">
+          <div className="hidden md:flex flex-1 justify-center max-w-xs mx-4 lg:absolute lg:inset-x-0 lg:mx-auto lg:w-fit lg:max-w-none z-10">
             <SearchBar />
           </div>
 
