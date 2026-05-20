@@ -138,13 +138,13 @@ const buildPath = (parent, currentGrid) => {
 }
 
 const GridVisualizer = ({ algorithm, runKey, speed }) => {
-  const [grid, setGrid] = useState(createGrid())
+  const [grid, setGrid] = useState(() => createGrid())
   const [mousePressed, setMousePressed] = useState(false)
   const [running, setRunning] = useState(false)
   const [drawWallMode, setDrawWallMode] = useState(true)
 
   const timeouts = useRef([])
-  const gridRef = useRef(createGrid())
+  const gridRef = useRef(null)
 
   useEffect(() => {
     gridRef.current = grid
@@ -201,6 +201,8 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
     const current = updated[row][col]
 
     if (!current.isStart && !current.isEnd) {
+      if (current.isWall === drawWallMode) return
+
       current.isWall = drawWallMode
     }
 
