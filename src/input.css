@@ -1,6 +1,81 @@
 @import 'tailwindcss';
 @import '@clerk/ui/themes/shadcn.css';
 
+:root {
+  --clerk-primary: #8b5cf6;
+  --clerk-text: #ffffff;
+  --clerk-text-secondary: #a1a1aa;
+  --clerk-bg: #0f0f0f;
+  --clerk-border: #27272a;
+  --clerk-input-bg: rgba(15, 23, 42, 0.75);
+  --clerk-input-border: #1e293b;
+  --clerk-input-text: #ffffff;
+  --clerk-input-placeholder: #71717a;
+  --clerk-card-bg: radial-gradient(
+    circle at center,
+    rgba(125, 211, 252, 0.15) 0%,
+    rgba(30, 41, 59, 0.6) 40%,
+    #020617 80%
+  );
+  --clerk-card-shadow: 0 0 40px rgba(56, 189, 248, 0.1);
+  --clerk-footer-bg: transparent;
+  --clerk-footer-bg-solid: #09090b;
+  --clerk-hover-bg: #111827;
+  --clerk-button-bg: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  --clerk-button-hover: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+  --clerk-social-bg: rgba(255, 255, 255, 0.9);
+  --clerk-social-hover: #ffffff;
+  --clerk-font-family: 'JetBrains Mono', monospace;
+}
+
+/* Light theme overrides */
+[data-theme='light'],
+.light {
+  --clerk-primary: #7c3aed;
+  --clerk-text: #020617;
+  --clerk-text-secondary: #64748b;
+  --clerk-bg: #ffffff;
+  --clerk-border: #e2e8f0;
+  --clerk-input-bg: #f8fafc;
+  --clerk-input-border: #cbd5e1;
+  --clerk-input-text: #020617;
+  --clerk-input-placeholder: #94a3b8;
+  --clerk-card-bg: #ffffff;
+  --clerk-card-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --clerk-footer-bg: transparent;
+  --clerk-footer-bg-solid: #f8fafc;
+  --clerk-hover-bg: #f1f5f9;
+  --clerk-button-bg: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  --clerk-button-hover: linear-gradient(135deg, #6d28d9 0%, #4338ca 100%);
+  --clerk-social-bg: #ffffff;
+  --clerk-social-hover: #f8fafc;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --clerk-primary: #7c3aed;
+    --clerk-text: #020617;
+    --clerk-text-secondary: #64748b;
+    --clerk-bg: #ffffff;
+    --clerk-border: #e2e8f0;
+    --clerk-input-bg: #f8fafc;
+    --clerk-input-border: #cbd5e1;
+    --clerk-input-text: #020617;
+    --clerk-input-placeholder: #94a3b8;
+    --clerk-card-bg: #ffffff;
+    --clerk-card-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --clerk-footer-bg: transparent;
+    --clerk-footer-bg-solid: #f8fafc;
+    --clerk-hover-bg: #f1f5f9;
+    --clerk-button-bg: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    --clerk-button-hover: linear-gradient(135deg, #6d28d9 0%, #4338ca 100%);
+    --clerk-social-bg: #ffffff;
+    --clerk-social-hover: #f8fafc;
+  }
+}
+
 @layer base {
   html,
   body {
