@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import Tooltip from '../Tooltip'
 
 export const MenuSetAlgoShortestPath = ({ algorithm, setAlgorithm }) => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -28,16 +29,22 @@ export const MenuSetAlgoShortestPath = ({ algorithm, setAlgorithm }) => {
         Algorithm
       </h3>
       <div className="relative">
-        <select
-          value={algorithm ?? ''}
-          onChange={handleChange}
-          className="w-full bg-slate-800 text-white text-sm border border-slate-700 rounded-xl pl-4 pr-10 py-3 transition duration-300 focus:outline-none focus:border-cyan-500 hover:border-slate-500 shadow-sm appearance-none cursor-pointer"
+        <Tooltip
+          content="Choose a shortest path algorithm to visualize"
+          position="top"
+          className="w-full"
         >
-          <option value="">Choose an Algorithm</option>
-          <option value="dijkstra">Dijkstra</option>
-          <option value="bellmanford">Bellman-Ford</option>
-          <option value="floydwarshall">Floyd–Warshall</option>
-        </select>
+          <select
+            value={algorithm ?? ''}
+            onChange={handleChange}
+            className="w-full bg-slate-800 text-white text-sm border border-slate-700 rounded-xl pl-4 pr-10 py-3 transition duration-300 focus:outline-none focus:border-cyan-500 hover:border-slate-500 shadow-sm appearance-none cursor-pointer"
+          >
+            <option value="">Choose an Algorithm</option>
+            <option value="dijkstra">Dijkstra</option>
+            <option value="bellmanford">Bellman-Ford</option>
+            <option value="floydwarshall">Floyd–Warshall</option>
+          </select>
+        </Tooltip>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

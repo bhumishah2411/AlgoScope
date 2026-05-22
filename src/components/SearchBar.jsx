@@ -110,6 +110,12 @@ const ALGORITHMS = [
       'dynamic programming',
     ],
   },
+  {
+    id: 'mooreVoting',
+    name: "Moore's Voting Algorithm",
+    category: 'Array Search',
+    route: '/moore-voting',
+  },
   // ADTs
   {
     id: 'stack',
@@ -136,6 +142,13 @@ const ALGORITHMS = [
     category: 'General',
     route: '/about',
   },
+  // Math Theory
+  {
+    id: 'mathTheory',
+    name: 'Math Theory',
+    category: 'Math',
+    route: '/math-theory',
+  },
 ]
 
 const SearchBar = () => {
@@ -143,6 +156,16 @@ const SearchBar = () => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [sortBy, setSortBy] = useState('relevance')
+  const [isMac] = useState(() => {
+    if (typeof window === 'undefined') return false
+    const platform =
+      navigator.userAgentData?.platform || navigator.platform || ''
+    return (
+      platform.toLowerCase().includes('mac') ||
+      navigator.userAgent.toLowerCase().includes('macintosh')
+    )
+  })
 
   const inputRef = useRef(null)
   const navigate = useNavigate()
@@ -166,7 +189,17 @@ const SearchBar = () => {
     }
 
     const searchResults = fuse.search(val)
-    setResults(searchResults)
+
+    const sortedResults = [...searchResults].sort((a, b) => {
+      if (sortBy === 'name') {
+        return a.item.name.localeCompare(b.item.name)
+      } else if (sortBy === 'category') {
+        return a.item.category.localeCompare(b.item.category)
+      }
+      return 0
+    })
+
+    setResults(sortedResults)
     setSelectedIndex(0)
   }
 
@@ -179,6 +212,12 @@ const SearchBar = () => {
     },
     [navigate]
   )
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setQuery('')
+    setResults([])
+  }
 
   // Handle Keyboard Shortcuts
   useEffect(() => {
@@ -206,7 +245,7 @@ const SearchBar = () => {
           handleSelect(results[selectedIndex].item.route)
         }
       } else if (e.key === 'Escape') {
-        setIsModalOpen(false)
+        handleCloseModal()
       }
     }
 
@@ -250,7 +289,7 @@ const SearchBar = () => {
           Search...
         </span>
         <div className="ml-auto hidden lg:flex items-center gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
-          <kbd className="text-[10px] font-sans">⌘</kbd>
+          <kbd className="text-[10px] font-sans">{isMac ? '⌘' : 'Ctrl'}</kbd>
           <kbd className="text-[10px] font-sans">K</kbd>
         </div>
       </button>
@@ -264,7 +303,7 @@ const SearchBar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
+              onClick={handleCloseModal}
               className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
             />
 
@@ -296,12 +335,43 @@ const SearchBar = () => {
                   type="text"
                   value={query}
                   onChange={handleSearch}
-                  className="w-full bg-transparent text-slate-200 text-lg block pl-12 pr-12 py-2 outline-none"
+                  className="w-full bg-transparent text-slate-200 text-lg block pl-12 pr-24 py-2 outline-none"
                   placeholder="Search algorithms..."
                 />
+                {/* Sort Dropdown */}
+                {results.length > 0 && (
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                    <select
+                      value={sortBy}
+                      onChange={(e) => {
+                        setSortBy(e.target.value)
+                        const searchResults = fuse.search(query)
+                        const sortedResults = [...searchResults].sort(
+                          (a, b) => {
+                            if (e.target.value === 'name') {
+                              return a.item.name.localeCompare(b.item.name)
+                            } else if (e.target.value === 'category') {
+                              return a.item.category.localeCompare(
+                                b.item.category
+                              )
+                            }
+                            return 0
+                          }
+                        )
+                        setResults(sortedResults)
+                      }}
+                      className="bg-slate-800 border border-slate-600 text-slate-300 text-xs px-2 py-1 rounded-lg cursor-pointer outline-none"
+                      aria-label="Sort results"
+                    >
+                      <option value="relevance">Relevance</option>
+                      <option value="name">Name</option>
+                      <option value="category">Category</option>
+                    </select>
+                  </div>
+                )}
                 {/* Close Button */}
                 <button
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={handleCloseModal}
                   className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/10 transition-all duration-200"
                   aria-label="Close search"
                 >
@@ -347,7 +417,7 @@ const SearchBar = () => {
                         <div className="flex items-center gap-2">
                           {index === selectedIndex && (
                             <span className="text-[10px] text-slate-500 border border-slate-700 px-1 rounded bg-slate-800">
-                              Enter
+                              {isMac ? 'Return' : 'Enter'}
                             </span>
                           )}
                           <svg
@@ -393,7 +463,7 @@ const SearchBar = () => {
                   </span>
                   <span className="flex items-center gap-1">
                     <kbd className="px-1.5 py-0.5 border border-slate-700 rounded bg-slate-800">
-                      Enter
+                      {isMac ? 'Return' : 'Enter'}
                     </kbd>{' '}
                     Select
                   </span>

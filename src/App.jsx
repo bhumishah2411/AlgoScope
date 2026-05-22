@@ -15,6 +15,12 @@ const VisualizerPage = lazy(() =>
     default: module.VisualizerPage,
   }))
 )
+
+const MathTheory = lazy(() =>
+  import('./components/MathTheory/MathSoloVisualizer').then((module) => ({
+    default: module.MathSoloVisualizer,
+  }))
+)
 const ShortestPathPage = lazy(() =>
   import('./components/shortestPathAlgo/ShortestPathPage').then((module) => ({
     default: module.ShortestPathPage,
@@ -31,6 +37,14 @@ const ArrayVisualizerPage = lazy(
 
 const KadaneVisualizerPage = lazy(
   () => import('./components/kadaneAlgo/VisualizerPage')
+)
+
+const MooreVotingVisualizerPage = lazy(
+  () => import('./components/mooreVotingAlgo/VisualizerPage')
+)
+
+const BacktrackingVisualizerPage = lazy(
+  () => import('./components/backtrackingAlgo/VisualizerPage')
 )
 
 const PracticePage = lazy(() => import('./components/PracticePage'))
@@ -62,6 +76,16 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <AppLayout>
             <VisualizerPage />
+          </AppLayout>
+        </Suspense>
+      ),
+    },
+    {
+      path: '/math-theory',
+      element: (
+        <Suspense fallback={<PageLoader />}>
+          <AppLayout>
+            <MathTheory />
           </AppLayout>
         </Suspense>
       ),
@@ -137,6 +161,26 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <AppLayout>
             <KadaneVisualizerPage />
+          </AppLayout>
+        </Suspense>
+      ),
+    },
+    {
+      path: '/moore-voting',
+      element: (
+        <Suspense fallback={<PageLoader />}>
+          <AppLayout>
+            <MooreVotingVisualizerPage />
+          </AppLayout>
+        </Suspense>
+      ),
+    },
+    {
+      path: '/backtracking',
+      element: (
+        <Suspense fallback={<PageLoader />}>
+          <AppLayout>
+            <BacktrackingVisualizerPage />
           </AppLayout>
         </Suspense>
       ),

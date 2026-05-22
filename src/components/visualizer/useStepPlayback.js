@@ -114,6 +114,18 @@ export function useStepPlayback({ speed = 1 }) {
     })
   }
 
+  const stepBackward = () => {
+    if (!hasSteps) {
+      return
+    }
+
+    window.clearTimeout(timeoutRef.current)
+    setIsPlaying(false)
+    setCurrentStepIndex((index) => {
+      return Math.max(index - 1, 0)
+    })
+  }
+
   return {
     steps,
     currentStep,
@@ -128,5 +140,6 @@ export function useStepPlayback({ speed = 1 }) {
     reset,
     replay,
     stepForward,
+    stepBackward,
   }
 }
