@@ -40,7 +40,7 @@ export function Hero() {
             className="mx-auto w-full max-w-lg text-center sm:mx-0 sm:max-w-none sm:text-left lg:max-w-[340px] xl:max-w-[360px]"
           >
             <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.03] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <span className="inline-flex items-center gap-2 rounded-full border theme-border bg-white/[0.03] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] theme-text-muted shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                 <motion.span
                   className="size-1.5 rounded-full bg-emerald-500"
                   animate={{ opacity: [0.65, 1, 0.65] }}
@@ -53,19 +53,19 @@ export function Hero() {
             <motion.h1
               id="hero-heading"
               variants={item}
-              className="logo-font mt-4 text-[1.9rem] font-semibold leading-[1.04] tracking-[-0.04em] text-white sm:mt-5 sm:text-[2.4rem] lg:text-[2.75rem] xl:text-[2.95rem]"
+              className="logo-font mt-4 text-[1.9rem] font-semibold leading-[1.04] tracking-[-0.04em] theme-text-strong sm:mt-5 sm:text-[2.4rem] lg:text-[2.75rem] xl:text-[2.95rem]"
             >
               Algorithms,
               <br />
-              <span className="text-zinc-500">made </span>
-              <span className="bg-gradient-to-br from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent [text-shadow:0_0_40px_rgba(255,255,255,0.08)]">
+              <span className="theme-text-muted">made </span>
+              <span className="theme-text-strong dark:[text-shadow:0_0_40px_rgba(255,255,255,0.08)]">
                 visible
               </span>
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="mx-auto mt-4 max-w-[34ch] font-mono text-[13px] leading-[1.6] text-zinc-400 sm:mx-0 sm:mt-5 sm:text-[14px]"
+              className="mx-auto mt-4 max-w-[34ch] font-mono text-[13px] leading-[1.6] theme-text-muted sm:mx-0 sm:mt-5 sm:text-[14px]"
             >
               Backtracking, graph traversal, and tree algorithms—watch every
               decision unfold in real time.
@@ -83,14 +83,14 @@ export function Hero() {
                     .getElementById('explore')
                     ?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="group relative inline-flex h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-[10px] bg-white px-4 text-[13px] font-semibold text-zinc-950 shadow-[0_1px_2px_rgba(0,0,0,0.45),0_0_0_1px_rgba(255,255,255,0.08)_inset] transition-[transform,box-shadow,background] duration-300 hover:bg-zinc-50 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.2),0_12px_32px_-8px_rgba(255,255,255,0.28)] active:scale-[0.98] sm:h-10 sm:w-auto sm:justify-start"
+                className="group relative inline-flex h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-[10px] theme-button-primary px-4 text-[13px] font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.45)] transition-[transform,box-shadow,background] duration-300 active:scale-[0.98] sm:h-10 sm:w-auto sm:justify-start"
               >
                 <span
                   className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   aria-hidden
                   style={{
                     background:
-                      'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%)',
+                      'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)',
                   }}
                 />
                 Explore visualizers
@@ -101,7 +101,7 @@ export function Hero() {
               </a>
               <a
                 href="/practice"
-                className="inline-flex h-11 w-full items-center justify-center rounded-[10px] border border-white/[0.1] bg-white/[0.025] px-4 text-[13px] font-medium text-zinc-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,background,color,box-shadow] duration-300 hover:border-white/[0.2] hover:bg-white/[0.06] hover:text-white hover:shadow-[0_0_20px_-6px_rgba(255,255,255,0.12)] active:scale-[0.98] sm:h-10 sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center rounded-[10px] border theme-button-secondary px-4 text-[13px] font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-300 active:scale-[0.98] sm:h-10 sm:w-auto"
               >
                 Practice
               </a>
@@ -109,7 +109,7 @@ export function Hero() {
 
             <motion.div
               variants={item}
-              className="mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-white/[0.06] pt-5 text-[10px] text-zinc-600 sm:mt-8 sm:justify-start sm:gap-x-5 sm:pt-6 sm:text-[11px]"
+              className="mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t theme-border pt-5 text-[10px] theme-text-muted sm:mt-8 sm:justify-start sm:gap-x-5 sm:pt-6 sm:text-[11px]"
             >
               <Meta n="9+" t="visualizers" />
               <span>Runs in browser</span>
