@@ -145,18 +145,12 @@ const ALGORITHMS = [
   // Backtracking
   {
     id: 'nqueens',
-    name: 'N-Queens (Backtracking)',
+    name: 'Backtracking',
     category: 'Backtracking',
     route: '/backtracking?algo=nqueens',
-    keywords: ['backtracking', 'n queens', 'nqueens', 'recursion'],
+    keywords: ['backtracking', 'n queens', 'nqueens', 'sudoku', 'recursion', 'constraint'],
   },
-  {
-    id: 'sudoku',
-    name: 'Sudoku Solver (Backtracking)',
-    category: 'Backtracking',
-    route: '/backtracking?algo=sudoku',
-    keywords: ['backtracking', 'sudoku', 'recursion', 'constraint'],
-  },
+  
   // Math Theory
   {
     id: 'mathTheory',
