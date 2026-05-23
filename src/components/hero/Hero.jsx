@@ -58,7 +58,7 @@ export function Hero() {
               Algorithms,
               <br />
               <span className="text-zinc-500">made </span>
-              <span className="bg-gradient-to-br from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent [text-shadow:0_0_40px_rgba(255,255,255,0.08)]">
+              <span className="text-white [text-shadow:0_0_40px_rgba(255,255,255,0.08)]">
                 visible
               </span>
             </motion.h1>
@@ -101,7 +101,7 @@ export function Hero() {
               </a>
               <a
                 href="/practice"
-                className="inline-flex h-11 w-full items-center justify-center rounded-[10px] border border-white/[0.1] bg-white/[0.025] px-4 text-[13px] font-medium text-zinc-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,background,color,box-shadow] duration-300 hover:border-white/[0.2] hover:bg-white/[0.06] hover:text-white hover:shadow-[0_0_20px_-6px_rgba(255,255,255,0.12)] active:scale-[0.98] sm:h-10 sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center rounded-[10px] border border-white/[0.1] bg-white/[0.025] px-4 text-[13px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,background,color,box-shadow] duration-300 hover:border-white/[0.2] hover:bg-white/[0.06] hover:shadow-[0_0_20px_-6px_rgba(255,255,255,0.12)] active:scale-[0.98] sm:h-10 sm:w-auto"
               >
                 Practice
               </a>
