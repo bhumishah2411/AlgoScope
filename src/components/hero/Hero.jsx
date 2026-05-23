@@ -40,7 +40,7 @@ export function Hero() {
             className="mx-auto w-full max-w-lg text-center sm:mx-0 sm:max-w-none sm:text-left lg:max-w-[340px] xl:max-w-[360px]"
           >
             <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.03] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <span className="inline-flex items-center gap-2 rounded-full border theme-border bg-white/[0.03] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] theme-text-muted shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                 <motion.span
                   className="size-1.5 rounded-full bg-emerald-500"
                   animate={{ opacity: [0.65, 1, 0.65] }}
@@ -53,19 +53,19 @@ export function Hero() {
             <motion.h1
               id="hero-heading"
               variants={item}
-              className="logo-font mt-4 text-[1.9rem] font-semibold leading-[1.04] tracking-[-0.04em] text-white sm:mt-5 sm:text-[2.4rem] lg:text-[2.75rem] xl:text-[2.95rem]"
+              className="logo-font mt-4 text-[1.9rem] font-semibold leading-[1.04] tracking-[-0.04em] theme-text-strong sm:mt-5 sm:text-[2.4rem] lg:text-[2.75rem] xl:text-[2.95rem]"
             >
               Algorithms,
               <br />
-              <span className="text-zinc-500">made </span>
-              <span className="text-zinc-900 dark:text-white dark:[text-shadow:0_0_40px_rgba(255,255,255,0.08)]">
+              <span className="theme-text-muted">made </span>
+              <span className="theme-text-strong dark:[text-shadow:0_0_40px_rgba(255,255,255,0.08)]">
                 visible
               </span>
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="mx-auto mt-4 max-w-[34ch] font-mono text-[13px] leading-[1.6] text-zinc-400 sm:mx-0 sm:mt-5 sm:text-[14px]"
+              className="mx-auto mt-4 max-w-[34ch] font-mono text-[13px] leading-[1.6] theme-text-muted sm:mx-0 sm:mt-5 sm:text-[14px]"
             >
               Backtracking, graph traversal, and tree algorithms—watch every
               decision unfold in real time.
