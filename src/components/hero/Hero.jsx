@@ -83,14 +83,14 @@ export function Hero() {
                     .getElementById('explore')
                     ?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="group relative inline-flex h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-[10px] bg-white px-4 text-[13px] font-semibold text-zinc-950 shadow-[0_1px_2px_rgba(0,0,0,0.45),0_0_0_1px_rgba(255,255,255,0.08)_inset] transition-[transform,box-shadow,background] duration-300 hover:bg-zinc-50 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.2),0_12px_32px_-8px_rgba(255,255,255,0.28)] active:scale-[0.98] sm:h-10 sm:w-auto sm:justify-start"
+                className="group relative inline-flex h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-[10px] theme-button-primary px-4 text-[13px] font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.45)] transition-[transform,box-shadow,background] duration-300 active:scale-[0.98] sm:h-10 sm:w-auto sm:justify-start"
               >
                 <span
                   className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   aria-hidden
                   style={{
                     background:
-                      'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%)',
+                      'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)',
                   }}
                 />
                 Explore visualizers
@@ -101,7 +101,7 @@ export function Hero() {
               </a>
               <a
                 href="/practice"
-                className="inline-flex h-11 w-full items-center justify-center rounded-[10px] border border-white/[0.1] bg-white/[0.025] px-4 text-[13px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,background,color,box-shadow] duration-300 hover:border-white/[0.2] hover:bg-white/[0.06] hover:shadow-[0_0_20px_-6px_rgba(255,255,255,0.12)] active:scale-[0.98] sm:h-10 sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center rounded-[10px] border theme-button-secondary px-4 text-[13px] font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-300 active:scale-[0.98] sm:h-10 sm:w-auto"
               >
                 Practice
               </a>
@@ -109,7 +109,7 @@ export function Hero() {
 
             <motion.div
               variants={item}
-              className="mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-white/[0.06] pt-5 text-[10px] text-zinc-600 sm:mt-8 sm:justify-start sm:gap-x-5 sm:pt-6 sm:text-[11px]"
+              className="mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t theme-border pt-5 text-[10px] theme-text-muted sm:mt-8 sm:justify-start sm:gap-x-5 sm:pt-6 sm:text-[11px]"
             >
               <Meta n="9+" t="visualizers" />
               <span>Runs in browser</span>

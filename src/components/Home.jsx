@@ -70,7 +70,7 @@ const ALGORITHMS = [
     title: 'Backtracking',
     description:
       'N-Queens and Sudoku Solver — watch the algorithm place, conflict, and undo in real time.',
-    color: 'bg-slate-900/50 border-rose-500/30 hover:border-rose-400',
+    color: 'theme-card border-rose-500/30 hover:border-rose-400',
     link: '/backtracking',
   },
 ]
@@ -83,11 +83,11 @@ export const Home = () => {
       <div className="relative z-10 px-4 pb-16">
         <div id="explore" className="mx-auto w-full max-w-7xl px-4">
           <div className="mb-12 flex items-center gap-4">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-            <span className="font-mono text-sm uppercase tracking-[0.3em] text-neutral-400">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-current to-transparent opacity-20 theme-text-strong" />
+            <span className="font-mono text-sm uppercase tracking-[0.3em] theme-text-subtle">
               Algorithms
             </span>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-current to-transparent opacity-20 theme-text-strong" />
           </div>
 
           <motion.div

@@ -93,6 +93,14 @@
     --theme-shadow: 0 24px 80px rgba(2, 6, 23, 0.45);
     --theme-glow-cyan: rgba(6, 182, 212, 0.2);
     --theme-glow-purple: rgba(168, 85, 247, 0.1);
+
+    --theme-button-primary: #ffffff;
+    --theme-button-primary-hover: #f1f5f9;
+    --theme-button-primary-text: #020617;
+    --theme-button-secondary: rgba(255, 255, 255, 0.03);
+    --theme-button-secondary-hover: rgba(255, 255, 255, 0.08);
+    --theme-button-secondary-text: #ffffff;
+    --theme-button-secondary-border: rgba(255, 255, 255, 0.1);
   }
 
   :root[data-theme='light'] {
@@ -111,6 +119,14 @@
     --theme-shadow: 0 24px 70px rgba(41, 37, 36, 0.12);
     --theme-glow-cyan: rgba(14, 165, 233, 0.08);
     --theme-glow-purple: rgba(124, 58, 237, 0.04);
+
+    --theme-button-primary: #1c1917;
+    --theme-button-primary-hover: #000000;
+    --theme-button-primary-text: #ffffff;
+    --theme-button-secondary: #8b5cf6;
+    --theme-button-secondary-hover: #7c3aed;
+    --theme-button-secondary-text: #ffffff;
+    --theme-button-secondary-border: transparent;
   }
 
   html,
@@ -205,9 +221,22 @@
 
   .theme-media-surface,
   .theme-button-secondary {
-    background: var(--theme-surface-muted);
-    border-color: var(--theme-border);
-    color: var(--theme-text-strong);
+    background: var(--theme-button-secondary);
+    border-color: var(--theme-button-secondary-border);
+    color: var(--theme-button-secondary-text);
+  }
+
+  .theme-button-primary {
+    background: var(--theme-button-primary);
+    color: var(--theme-button-primary-text);
+  }
+
+  .theme-button-primary:hover {
+    background: var(--theme-button-primary-hover);
+  }
+
+  .theme-button-secondary:hover {
+    background: var(--theme-button-secondary-hover);
   }
 }
 
