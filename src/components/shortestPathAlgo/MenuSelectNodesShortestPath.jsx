@@ -48,7 +48,11 @@ export const MenuSelectNodesShortestPath = ({
       <div className="space-y-3">
         <div className="relative">
           <Tooltip
-            content={algorithm === 'prim' ? 'Choose the start node' : 'Choose the source node'}
+            content={
+              algorithm === 'prim'
+                ? 'Choose the start node'
+                : 'Choose the source node'
+            }
             position="top"
             className="w-full"
           >
@@ -57,7 +61,9 @@ export const MenuSelectNodesShortestPath = ({
               onChange={(e) => setSource(e.target.value || null)}
               className="w-full bg-slate-800 text-white text-sm border border-slate-700 rounded-xl pl-4 pr-10 py-3 transition duration-300 focus:outline-none focus:border-cyan-500 hover:border-slate-500 shadow-sm appearance-none cursor-pointer"
             >
-              <option value="">{algorithm === 'prim' ? 'Choose Start Node' : 'Choose Source'}</option>
+              <option value="">
+                {algorithm === 'prim' ? 'Choose Start Node' : 'Choose Source'}
+              </option>
               {nodeOptions.map((n) => (
                 <option key={n} value={n}>
                   {n}

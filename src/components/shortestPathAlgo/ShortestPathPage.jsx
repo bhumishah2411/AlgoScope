@@ -68,10 +68,10 @@ export const ShortestPathPage = () => {
     viewMode === 'grid'
       ? !!algorithm
       : algorithm === 'kruskal'
-      ? !!algorithm
-      : algorithm === 'prim'
-      ? !!algorithm && !!source
-      : !!algorithm && !!source && !!target
+        ? !!algorithm
+        : algorithm === 'prim'
+          ? !!algorithm && !!source
+          : !!algorithm && !!source && !!target
 
   const currentSource = useMemo(() => {
     if (!algorithm) return ''
@@ -146,8 +146,8 @@ export const ShortestPathPage = () => {
               viewMode === 'grid'
                 ? 'bg-cyan-600 text-white'
                 : algorithm === 'prim' || algorithm === 'kruskal'
-                ? 'bg-slate-800/40 text-slate-600 cursor-not-allowed border border-white/5'
-                : 'bg-slate-800 text-slate-400'
+                  ? 'bg-slate-800/40 text-slate-600 cursor-not-allowed border border-white/5'
+                  : 'bg-slate-800 text-slate-400'
             }`}
           >
             Grid View
@@ -174,8 +174,8 @@ export const ShortestPathPage = () => {
                 mode === 'compare'
                   ? 'bg-cyan-600 text-white'
                   : algorithm === 'prim' || algorithm === 'kruskal'
-                  ? 'bg-slate-800/40 text-slate-600 cursor-not-allowed border border-white/5'
-                  : 'bg-slate-800 text-slate-400'
+                    ? 'bg-slate-800/40 text-slate-600 cursor-not-allowed border border-white/5'
+                    : 'bg-slate-800 text-slate-400'
               }`}
             >
               Compare

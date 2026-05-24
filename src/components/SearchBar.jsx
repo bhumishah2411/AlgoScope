@@ -98,7 +98,13 @@ const ALGORITHMS = [
     name: "Kruskal's Algorithm",
     category: 'Minimum Spanning Tree',
     route: '/spath?algo=kruskal',
-    keywords: ['kruskal', 'mst', 'minimum spanning tree', 'union find', 'disjoint set'],
+    keywords: [
+      'kruskal',
+      'mst',
+      'minimum spanning tree',
+      'union find',
+      'disjoint set',
+    ],
   },
   // Array Search
   {
