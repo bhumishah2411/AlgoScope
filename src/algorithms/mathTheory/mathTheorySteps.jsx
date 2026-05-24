@@ -435,3 +435,164 @@ export function generateSieveSteps(n) {
 
   return steps
 }
+
+// ─────────────────────────────────────────────
+// FIBONACCI SEQUENCE (Golden Spiral vs Recursion Tree)
+// ─────────────────────────────────────────────
+
+export function generateFibonacciSteps(n) {
+  const steps = []
+
+  // 1. Pre-build the entire tree structure skeleton
+  const treeState = {}
+
+  function initTree(valN, path = 'root', parentPath = null) {
+    treeState[path] = {
+      id: path,
+      n: valN,
+      val: null,
+      state: 'inactive',
+      parent: parentPath,
+      children: [],
+    }
+
+    if (valN > 1) {
+      const leftPath = path + '-L'
+      const rightPath = path + '-R'
+      treeState[path].children = [leftPath, rightPath]
+      initTree(valN - 1, leftPath, path)
+      initTree(valN - 2, rightPath, path)
+    }
+  }
+
+  initTree(n)
+
+  const getTreeSnapshot = () => {
+    const snapshot = {}
+    for (const key in treeState) {
+      snapshot[key] = { ...treeState[key] }
+    }
+    return snapshot
+  }
+
+  let maxNResolved = 0
+
+  // Start step
+  steps.push(
+    createStep({
+      lineKey: 'start',
+      type: 'start',
+      message: `Start: Compute fib(${n})`,
+      variables: { n, activeNode: null, maxNResolved: 0 },
+      treeState: getTreeSnapshot(),
+      activePath: null,
+      spiralCount: 0,
+      duration: 800,
+    })
+  )
+
+  function recurse(valN, path = 'root') {
+    // Set node to active
+    treeState[path].state = 'active'
+
+    steps.push(
+      createStep({
+        lineKey: 'baseCase',
+        type: 'compare',
+        message: `fib(${valN}) called. Check base case: is n <= 1?`,
+        variables: { n: valN, activeNode: path, maxNResolved },
+        treeState: getTreeSnapshot(),
+        activePath: path,
+        spiralCount: maxNResolved,
+        duration: 800,
+      })
+    )
+
+    if (valN <= 1) {
+      treeState[path].state = 'resolved'
+      treeState[path].val = valN
+      maxNResolved = Math.max(maxNResolved, valN)
+
+      steps.push(
+        createStep({
+          lineKey: 'returnBase',
+          type: 'swap',
+          message: `Base case met: fib(${valN}) = ${valN}`,
+          variables: { n: valN, result: valN, activeNode: path, maxNResolved },
+          treeState: getTreeSnapshot(),
+          activePath: path,
+          spiralCount: maxNResolved,
+          duration: 700,
+        })
+      )
+      return valN
+    }
+
+    // Recursive left call: fib(n-1)
+    const leftVal = recurse(valN - 1, path + '-L')
+
+    // Back to current node
+    treeState[path].state = 'active'
+    steps.push(
+      createStep({
+        lineKey: 'recursiveCall',
+        type: 'compare',
+        message: `Returned fib(${valN - 1}) = ${leftVal}. Now call fib(${valN - 2})`,
+        variables: { n: valN, leftVal, activeNode: path, maxNResolved },
+        treeState: getTreeSnapshot(),
+        activePath: path,
+        spiralCount: maxNResolved,
+        duration: 800,
+      })
+    )
+
+    // Recursive right call: fib(n-2)
+    const rightVal = recurse(valN - 2, path + '-R')
+
+    // Combine results
+    const result = leftVal + rightVal
+    treeState[path].state = 'resolved'
+    treeState[path].val = result
+    maxNResolved = Math.max(maxNResolved, valN)
+
+    steps.push(
+      createStep({
+        lineKey: 'recursiveCall',
+        type: 'swap',
+        message: `Combine: fib(${valN}) = fib(${valN - 1}) + fib(${valN - 2}) = ${leftVal} + ${rightVal} = ${result}`,
+        variables: {
+          n: valN,
+          leftVal,
+          rightVal,
+          result,
+          activeNode: path,
+          maxNResolved,
+        },
+        treeState: getTreeSnapshot(),
+        activePath: path,
+        spiralCount: maxNResolved,
+        duration: 950,
+      })
+    )
+
+    return result
+  }
+
+  const finalResult = recurse(n)
+
+  // Final step
+  steps.push(
+    createStep({
+      lineKey: 'result',
+      type: 'complete',
+      message: `Completed! fib(${n}) = ${finalResult}`,
+      variables: { n, result: finalResult, activeNode: null, maxNResolved },
+      treeState: getTreeSnapshot(),
+      activePath: null,
+      spiralCount: maxNResolved,
+      duration: 1000,
+    })
+  )
+
+  return steps
+}

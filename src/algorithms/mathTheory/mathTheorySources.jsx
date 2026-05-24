@@ -563,3 +563,89 @@ export const getSieveSource = (language) =>
 
 export const resolveSieveLine = (language, lineKey) =>
   (sieveSources[language] ?? sieveSources.javascript).lineMap?.[lineKey]
+
+// ─── FIBONACCI ──────────────────────────────────────────────────────────────
+
+export const fibonacciSources = {
+  javascript: {
+    code: `function fib(n) {
+  if (n <= 1) {
+    return n;
+  }
+  return fib(n - 1) + fib(n - 2);
+}
+
+console.log(fib(6)); // 8`,
+    lineMap: {
+      start: 1,
+      baseCase: 2,
+      returnBase: 3,
+      recursiveCall: 5,
+      result: 5,
+    },
+  },
+  python: {
+    code: `def fib(n):
+    if n <= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(6))  # 8`,
+    lineMap: {
+      start: 1,
+      baseCase: 2,
+      returnBase: 3,
+      recursiveCall: 4,
+      result: 4,
+    },
+  },
+  cpp: {
+    code: `#include <iostream>
+using namespace std;
+
+int fib(int n) {
+    if (n <= 1) {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+    cout << fib(6); // 8
+}`,
+    lineMap: {
+      start: 4,
+      baseCase: 5,
+      returnBase: 6,
+      recursiveCall: 8,
+      result: 8,
+    },
+  },
+  java: {
+    code: `public class Fibonacci {
+    public static int fib(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(fib(6)); // 8
+    }
+}`,
+    lineMap: {
+      start: 2,
+      baseCase: 3,
+      returnBase: 4,
+      recursiveCall: 6,
+      result: 6,
+    },
+  },
+}
+
+export const getFibonacciSource = (language) =>
+  fibonacciSources[language]?.code ?? fibonacciSources.javascript.code
+
+export const resolveFibonacciLine = (language, lineKey) =>
+  (fibonacciSources[language] ?? fibonacciSources.javascript).lineMap?.[lineKey]

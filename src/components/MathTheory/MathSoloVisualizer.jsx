@@ -8,21 +8,25 @@ import { CanvasGCD } from './CanvasGCD'
 import { CanvasFastExpo } from './CanvasFastExpo.jsx'
 import { CanvasBitManip } from './CanvasBitManip.jsx'
 import { CanvasSieve } from './CanvasSieve.jsx'
+import { CanvasFibonacci } from './CanvasFibonacci.jsx'
 import {
   generateEuclideanGCDSteps,
   generateFastExpoSteps,
   generateBitOpSteps,
   generateSieveSteps,
+  generateFibonacciSteps,
 } from '../../algorithms/mathTheory/mathTheorySteps'
 import {
   getGCDSource,
   getFastExpoSource,
   getBitManipSource,
   getSieveSource,
+  getFibonacciSource,
   resolveGCDLine,
   resolveFastExpoLine,
   resolveBitManipLine,
   resolveSieveLine,
+  resolveFibonacciLine,
 } from '../../algorithms/mathTheory/mathTheorySources'
 
 const ALGO_TABS = [
@@ -30,6 +34,7 @@ const ALGO_TABS = [
   { key: 'expo', label: 'Fast Exponentiation', complexityKey: 'fastexpo' },
   { key: 'bits', label: 'Bit Manipulation', complexityKey: 'bitmanip' },
   { key: 'sieve', label: 'Sieve of Eratosthenes', complexityKey: 'sieve' },
+  { key: 'fibonacci', label: 'Fibonacci Sequence', complexityKey: 'fibonacci' },
 ]
 
 export const MathSoloVisualizer = () => {
@@ -52,6 +57,9 @@ export const MathSoloVisualizer = () => {
 
   // Sieve state
   const [sieveLimit, setSieveLimit] = useState(30)
+
+  // Fibonacci state
+  const [fibLimit, setFibLimit] = useState(6)
 
   const {
     currentStep,
@@ -76,6 +84,8 @@ export const MathSoloVisualizer = () => {
       loadSteps(generateFastExpoSteps(Number(expoBase), Number(expoExp)))
     } else if (algo === 'sieve') {
       loadSteps(generateSieveSteps(Number(sieveLimit)))
+    } else if (algo === 'fibonacci') {
+      loadSteps(generateFibonacciSteps(Number(fibLimit)))
     } else {
       loadSteps(generateBitOpSteps(Number(bitA), Number(bitB), bitOp))
     }
@@ -89,6 +99,7 @@ export const MathSoloVisualizer = () => {
     if (algo === 'gcd') return getGCDSource(language)
     if (algo === 'expo') return getFastExpoSource(language)
     if (algo === 'sieve') return getSieveSource(language)
+    if (algo === 'fibonacci') return getFibonacciSource(language)
     return getBitManipSource(language)
   }, [algo, language])
 
@@ -98,6 +109,8 @@ export const MathSoloVisualizer = () => {
     if (algo === 'expo')
       return resolveFastExpoLine(language, currentStep.lineKey)
     if (algo === 'sieve') return resolveSieveLine(language, currentStep.lineKey)
+    if (algo === 'fibonacci')
+      return resolveFibonacciLine(language, currentStep.lineKey)
     if (algo === 'bits')
       return resolveBitManipLine(language, currentStep.lineKey)
     return undefined
@@ -317,6 +330,37 @@ export const MathSoloVisualizer = () => {
           </div>
         )}
 
+        {algo === 'fibonacci' && (
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Inputs
+            </p>
+            <Tooltip
+              content="Limit (N): keeps tree readable (2–8)"
+              position="right"
+              className="w-full"
+            >
+              <div>
+                <label className="text-xs text-slate-500 mb-1 block">
+                  Limit (N)
+                </label>
+                <input
+                  type="number"
+                  min={2}
+                  max={8}
+                  value={fibLimit}
+                  onChange={(e) =>
+                    setFibLimit(
+                      Math.min(8, Math.max(2, Number(e.target.value)))
+                    )
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-2.5 text-white outline-none focus:border-cyan-500 text-sm"
+                />
+              </div>
+            </Tooltip>
+          </div>
+        )}
+
         <div className="space-y-3 pt-2 pb-2 border-t border-white/10">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 mb-2">
@@ -430,6 +474,12 @@ export const MathSoloVisualizer = () => {
           <CanvasSieve
             currentStep={currentStep}
             inputLimit={Number(sieveLimit)}
+          />
+        )}
+        {algo === 'fibonacci' && (
+          <CanvasFibonacci
+            currentStep={currentStep}
+            inputLimit={Number(fibLimit)}
           />
         )}
 

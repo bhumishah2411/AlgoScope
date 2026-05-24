@@ -16,12 +16,13 @@
 export const createStep = ({
   lineKey,
   type,
-  array,
+  array = [],
   indices = [],
   sortedIndices = [],
   message = '',
   variables = {},
   duration,
+  ...rest
 }) => ({
   lineKey,
   type,
@@ -31,6 +32,7 @@ export const createStep = ({
   message,
   variables,
   duration,
+  ...rest,
 })
 
 /**
