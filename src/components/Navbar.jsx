@@ -128,6 +128,7 @@ const algorithmLinks = [
   { name: "Moore's Voting Algorithm", href: '/moore-voting' },
   { name: 'Math Theory', href: '/math-theory' },
   { name: 'String Algorithms', href: '/string-algorithms' },
+  { name: 'Backtracking', href: '/backtracking' },
 ]
 
 export const Navbar = () => {
