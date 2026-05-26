@@ -211,6 +211,14 @@ const ALGORITHMS = [
     category: 'Math',
     route: '/math-theory',
   },
+  // Games & Challenges
+  {
+    id: 'challenge',
+    name: 'Guess the Algorithm (Challenge)',
+    category: 'Games',
+    route: '/challenge',
+    keywords: ['game', 'challenge', 'guess the algorithm', 'quiz', 'play'],
+  },
 ]
 
 const SearchBar = () => {

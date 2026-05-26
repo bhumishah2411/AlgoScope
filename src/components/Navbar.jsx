@@ -130,6 +130,7 @@ const algorithmLinks = [
   { name: 'String Algorithms', href: '/string-algorithms' },
   { name: 'Backtracking', href: '/backtracking' },
   { name: 'Practice Sandbox', href: '/practice' },
+  { name: 'Guess the Algorithm', href: '/challenge' },
 ]
 
 export const Navbar = () => {

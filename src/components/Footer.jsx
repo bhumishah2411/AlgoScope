@@ -40,6 +40,13 @@ const Footer = () => {
       complexity: 'O(N)',
       color: 'hover:border-emerald-500/30 text-emerald-400 bg-emerald-500/5',
     },
+    {
+      name: 'Challenges',
+      path: '/challenge',
+      desc: 'Guess the running algorithm game',
+      complexity: 'Interactive',
+      color: 'hover:border-yellow-500/30 text-yellow-400 bg-yellow-500/5',
+    },
   ]
 
   const performanceMetrics = [

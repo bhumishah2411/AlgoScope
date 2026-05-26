@@ -114,6 +114,29 @@ export const Home = () => {
               />
             ))}
           </motion.div>
+
+          <div className="mt-16 mb-12 flex items-center gap-4">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-current to-transparent opacity-20 theme-text-strong" />
+            <span className="font-mono text-sm uppercase tracking-[0.3em] theme-text-subtle">
+              Games & Challenges
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-current to-transparent opacity-20 theme-text-strong" />
+          </div>
+
+          <motion.div
+            className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <AlgoCard
+              title="Guess the Algorithm"
+              description="Test your algorithm recognition skills! Can you identify the sorting algorithm purely from its visual animation?"
+              color="theme-card border-yellow-500/30 hover:border-yellow-400"
+              link="/challenge"
+            />
+          </motion.div>
         </div>
       </div>
     </div>
