@@ -19,25 +19,25 @@ export default function AlgoCard({ title, description, link, color }) {
     })
   }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
     },
-  },
-  hover: { 
-    scale: 1.02, 
-    y: -8,
-    transition: { duration: 0.2 }
+    hover: {
+      scale: 1.02,
+      y: -8,
+      transition: { duration: 0.2 },
+    },
   }
-}
 
   const colorClasses =
-    color || 'theme-card theme-border hover:border-neutral-700' 
+    color || 'theme-card theme-border hover:border-neutral-700'
 
   return (
     <MotionLink
